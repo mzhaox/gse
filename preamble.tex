@@ -1,5 +1,6 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath, amsthm, amssymb}
+\usepackage[shortlabels]{enumitem}
 \usepackage[numbers]{natbib}
 \usepackage{mathtools}
 \usepackage[numbers]{natbib}
@@ -8,6 +9,7 @@
 \usepackage[bookmarks,colorlinks,breaklinks]{hyperref}  % PDF hyperlinks, with coloured links
 \usepackage{cleveref}
 \usepackage{color}
+\usepackage{parskip}
 \hypersetup{linkcolor=red,citecolor=blue,filecolor=dullmagenta,urlcolor=darkblue} % coloured links
 \makeatletter
 \def\thm@space@setup{%
@@ -53,4 +55,22 @@
 \newcommand{\nnreals}{\mathbb{R}^{\geq{0}}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Qp}{\Q_p}
+
+\newcommand{\gl}[2]{\mathrm{GL}_{#1}({#2})}
+\renewcommand{\sl}[2]{\mathrm{SL}_{#1}({#2})}
+\newcommand{\so}[2]{\mathrm{SO}_{#1}({#2})}
+\renewcommand{\sp}[2]{\mathrm{Sp}_{#1}({#2})}
+
+\newcommand{\langdual}[1]{{#1}^\vee} % Langlands dual
+\newcommand{\ggroup}{K_0} % Grothendieck group
+
+\newcommand{\perv}{\mathrm{Perv}}
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+\newcommand{\gr}[1]{\mathrm{Gr}_{#1}}
+\newcommand{\rep}{\mathrm{Rep}}
+
+% Big isomorphism arrow
+\newcommand{\longiso}{\stackrel{\sim}{\longrightarrow}}
+\input{iso}
 
