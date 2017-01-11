@@ -1,76 +1,56 @@
 \documentclass[12pt,reqno]{amsart}
+% Symbols
 \usepackage{amsmath, amsthm, amssymb}
-\usepackage[shortlabels]{enumitem}
-\usepackage[numbers]{natbib}
 \usepackage{mathtools}
-\usepackage[numbers]{natbib}
+
+% Style
 \usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
-\usepackage[bookmarks,colorlinks,breaklinks]{hyperref}  % PDF hyperlinks, with coloured links
-\usepackage{cleveref}
-\usepackage{color}
 \usepackage{parskip}
-\hypersetup{linkcolor=red,citecolor=blue,filecolor=dullmagenta,urlcolor=darkblue} % coloured links
+\usepackage[shortlabels]{enumitem}
+
+% Colored text
+\usepackage{color}
+
+% Links
+\usepackage[bookmarks,colorlinks,breaklinks]{hyperref}
+% PDF hyperlinks, with coloured links
+\hypersetup{linkcolor=red,citecolor=blue,
+  filecolor=dullmagenta,urlcolor=darkblue}
+
+% Bibliography and references
+\usepackage[numbers]{natbib}
+\usepackage{cleveref}
+
+% Figures
+\usepackage{graphicx}
+
+
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=0.5em\thm@postskip=\thm@preskip%
 }
 \makeatother
+% Unnamed theorem without counter
 \newtheorem*{theorem}{Theorem}
 \newtheoremstyle{named}{}{}{\\itshape}{}{\bfseries}{.}{.5em}{\thmnote{#3's }#1}
 \theoremstyle{named}
+% Named theorem without counter
 \newtheorem*{namedtheorem}{Theorem}
+% Other theorem environments
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
-\newtheorem{definition}[thm]{Definition}
-\newtheorem{proposition}[thm]{Proposition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
 \newtheorem{rmk}[thm]{Remark}
 \newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposition}
 \newtheorem{exmpl}[thm]{Example}
 \crefformat{footnote}{#2\footnotemark[#1]#3}
-\newcommand{\conj}[1]{\overline{#1}}
-\newcommand{\tr}{\operatorname{tr}}
-\newcommand{\ie}{{\\it i.e. }}
-\newcommand{\com}[1]{\color{blue}{#1}\color{black}}
-\newcommand{\cl}[1]{{\mathrm{Cl}{(#1)}}}
-\newcommand{\roi}[1]{\mathcal{O}_{#1}}
-\newcommand{\gal}[3]{\mathrm{Gal}{(#1 #2 #3)}}
-\newcommand{\iso}{\cong}
-\newcommand{\rats}{\mathbb{Q}}
-\newcommand{\reals}{\mathbb{R}}
-\newcommand{\cmplx}{\mathbb{C}}
-\newcommand{\prim}{\mathfrak{p}}%\prime is the symbol: '
-\newcommand{\oprime}{\mathfrak{P}}
-\newcommand{\oprimealt}{\oprime^o}
-\newcommand{\frob}[1]{\mathrm{Fr}_{#1}}
-\newcommand{\legndr}[2]{\left(\dfrac{#1}{#2}\right)}
-\newcommand{\N}[1]{N{(#1)}}
-\newcommand{\Zmod}[1]{\mathbb{Z}/#1 \mathbb{Z}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Zn}{\mathbb{Z}/n\mathbb{Z}}
-\newcommand{\Znu}{\left(\mathbb{Z}/n\mathbb{Z}\right)^\times}
-\newcommand{\Zp}{\mathbb{Z}/p\mathbb{Z}}
-\newcommand{\Zpu}{\left(\mathbb{Z}/p\mathbb{Z}\right)^\times}
-\newcommand{\nnreals}{\mathbb{R}^{\geq{0}}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Qp}{\Q_p}
 
-\newcommand{\gl}[2]{\mathrm{GL}_{#1}({#2})}
-\renewcommand{\sl}[2]{\mathrm{SL}_{#1}({#2})}
-\newcommand{\so}[2]{\mathrm{SO}_{#1}({#2})}
-\renewcommand{\sp}[2]{\mathrm{Sp}_{#1}({#2})}
-
-\newcommand{\langdual}[1]{{#1}^\vee} % Langlands dual
-\newcommand{\ggroup}{K_0} % Grothendieck group
-
-\newcommand{\perv}{\mathrm{Perv}}
-\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
-
-\newcommand{\gr}[1]{\mathrm{Gr}_{#1}}
-\newcommand{\rep}{\mathrm{Rep}}
-
-% Big isomorphism arrow
-\newcommand{\longiso}{\stackrel{\sim}{\longrightarrow}}
-\input{iso}
+\input{commands/algebra}
+\input{commands/geometry}
+\input{commands/iso}
+\input{commands/ktheory}
+\input{commands/linalg}
+\input{commands/numbers}
+\input{commands/representations}
 
