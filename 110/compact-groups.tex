@@ -51,3 +51,43 @@ course, but the goal is to understand what $\gr G$ is.
 
 \subsubsection{Part V of the Class} The geometric Satake equivalence.
 
+\section{Representation and Structure Theory of Compact Lie Groups}
+
+\begin{defn}
+A \textbf{Lie group} is a group object in the category of smooth manifolds, i.e.
+$m: G \times G \rightarrow G, \ \mathrm{inv}: G \rightarrow G,
+\ \mathrm{id}: {1} \rightarrow G$, satisfying the following diagrams.
+
+%TODO: commutative diagrams
+\end{defn}
+
+\begin{exmpl}
+The following are Lie groups.
+
+\begin{itemize}
+\item $\gl n \reals \subset M_n(\reals) \iso \reals^{n^2}$
+\item $\sp {2n} \reals = \{ g \in \sl {2n} \reals \ | \
+  g \ \textrm{preserves a non-degenerate alternating form} \}$
+\item More generally, closed subgroups $G \xhookrightarrow{} \gl n \reals$.
+\item Unipotent matriceslatex, invertible upper triangular matrices (Borel subgroup).
+\item $\sl 2 \reals$, which has $\pi_1(\sl 2 \reals) \iso \ints$.
+%TODO(hint): SO(2) \xhookrightarrow{} SL_2(R) 
+\item $\widetilde{\sl 2 \reals}$, the metaplectic cover of $\sl 2 \reals$ is a
+Lie group but can't be embedded into $\gl n \reals$.
+\end{itemize}
+
+The last two are less relevant for us.
+
+\subsection{Basic Structure of Lie Groups}
+\subsubsection{Lie Algebras}
+The Lie algebra $\mathfrak{g}$ of $G$ is given by the tangent space at the 
+identity. It is a priori a vector space, but the Lie bracket gives it an algebra
+structure, which we will describe briefly.
+
+There is a map $G \rightarrow \aut(G)$ since $G$ acts on $G$ by conjugation.
+This induces $\operatorname{Ad}: G \rightarrow \aut_\reals (\mathfrak{g})$.
+
+
+
+
+\end{exmpl}
