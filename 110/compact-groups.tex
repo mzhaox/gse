@@ -75,19 +75,198 @@ The following are Lie groups.
 \item $\widetilde{\sl 2 \reals}$, the metaplectic cover of $\sl 2 \reals$ is a
 Lie group but can't be embedded into $\gl n \reals$.
 \end{itemize}
+\end{exmpl}
 
 The last two are less relevant for us.
 
-\subsection{Basic Structure of Lie Groups}
-\subsubsection{Lie Algebras}
+\subsection{Lie Algebras}
 The Lie algebra $\mathfrak{g}$ of $G$ is given by the tangent space at the 
 identity. It is a priori a vector space, but the Lie bracket gives it an algebra
 structure, which we will describe briefly.
 
 There is a map $G \rightarrow \aut(G)$ since $G$ acts on $G$ by conjugation.
-This induces $\operatorname{Ad}: G \rightarrow \aut_\reals (\mathfrak{g})$.
+This induces \[ \operatorname{Ad}: G \rightarrow \aut_\reals (\mathfrak{g}), \]
+given by \[ g \rightarrow \restr{dg}{1}.\] By differentiating at the identity,
+we obtain the map
+\[ \operatorname{ad}: \mathfrak{g} \rightarrow \into_\reals(\mathfrak{g}). \]
+Then we can define the Lie bracket as $[X, Y] := \operatorname{ad}(X)(Y)$.
 
-
-
-
+\begin{exmpl}
+For $G = \gl n \reals$, $\mathfrak{g} = M_n(\reals)$, and $[X, Y] = XY - YX$.
 \end{exmpl}
+
+\subsection{Exponential Map}
+
+Here we will explain the role of Lie algebras, by constructing a map
+$\op{exp} : \mathfrak{g} \rightarrow G$. For $G = \gl n k$,
+$\op{exp}(X) = \sum X^n / n!$.
+
+\subsubsection{$\op{exp}$ Facts}
+
+\begin{enumerate}[1.]
+\item $\op{exp}$ is a local diffeomorphism near 0, by the implicit functions
+theorem.
+\item $\op{exp}$ is not a homomorphism once $G$ is non-abelian.
+\end{enumerate}
+
+\subsubsection{$\op{exp}$ Construction}
+Take $X \in \mathfrak{g}$. Use left-multiplication to propagate $X$ to a
+left-invariant vector field $\xi_X$ on $G$. Construct an integral curve 
+$\varphi_X$ for this vector field (this corresponds to solving the differential 
+equation $\varphi(0) = 1, \varphi_X'(t) = \xi_X(\varphi_X(t))$. This gives a 
+function $\varphi_X : (-\varepsilon, \varepsilon) \rightarrow G$, which extends 
+to a homomorphism $\varphi_X : \reals \rightarrow G$.
+
+\begin{defn}
+$\op{exp}_G(X) := \varphi_X(1)$.
+\end{defn}
+
+\begin{rmk}
+For $G$ a compact connected Lie group, $\mathfrak{g}$ its Lie algebra,
+$\op{exp}_G: \mathfrak{g} \rightarrow G$ is surjective. The basic idea of the
+proof is to use the Killing form on a Lie algebra. Use multiplication to 
+transport it to a Riemannian metric. The integral curves are geodesics, and any
+two points are connected by a geodesic.
+\end{rmk}
+
+\begin{ex}
+Find a $G$ where $\op{exp}_G$ is not surjective.
+\end{ex}
+
+\subsection{Representation of Compact Lie Groups}
+
+\begin{defn}
+A representation of $G$ a compact Lie group is a continuous (hence smooth)
+homomorphism $G \rightarrow \gl n \cmplx$.
+\end{defn}
+
+The motto here is to study representations of $G$ by restricting to a maximal
+tori.
+
+\begin{defn}
+A (compact) torus is a (compact) connected abelian Lie group.
+\end{defn}
+
+\begin{exmpl}
+$S^1$ is a torus, and all examples are isomorphic to $(S^1)^n$. If $T$ is a 
+torus, its Lie algebra $\mathfrak{t}$ is isomorphic to $\reals^n$ and surjects
+onto $T$ via $\op{exp}_T$. The kernel is a full lattice $\ints^n$, so
+$T \iso (S^1)^n$.
+\end{exmpl}
+
+\begin{defn}
+A \textbf{character} (or \textbf{weight}) of $T$ is a continuous homomorphism
+$T \rightarrow S^1$. Write $\cgroup T$ for the abelian group of characters of
+$T$.
+\end{defn}
+
+\begin{ex}
+Prove the following lemma.
+\begin{lem}
+If $T \iso \reals^n/\ints^n$, then all characters of $T$ have the form
+\[ (x_1, ..., x_n) \rightarrow \prod_{r = 1}^n e^{2 \pi i a_r x_r}, \]
+where all $a_r \in \ints$.
+\end{lem}
+\end{ex}
+
+\begin{lem}
+Any compact torus has a (dense set of) topological generators, i.e. there is
+$t \in T$ with $T = \overline{\langle t \rangle}.$
+\end{lem}
+
+\begin{proof}
+Assume $T \iso \reals^n/\ints^n$, and take $T \ni t = (t_1, ..., t_n)$. Let
+$H := \overline{\langle t \rangle}$.
+
+\begin{lem}
+$H = T$ if and only if $1, t_1, ..., t_n$ are $\rats$-linearly independent.
+\end{lem}
+
+If $H \neq T$, then $T/H$, a compact torus, has a non-trivial character $\chi$,
+and \[ \chi(x_1, ..., x_n) = \prod_r e^{2 \pi i a_r x_r}, \]  for some integers
+$a_r$ not all zero. Then $\restr{\chi}{H} = 1$ if and only if $\chi(t) = 1$
+if and only if $\sum a_r t_r \in \ints$, which implies $1, t_1, ..., t_n$ are
+$\rats$-linearly independent.
+\end{proof}
+
+\begin{thm}
+Let $G$ be a compact connected Lie group. Fix a maximal torus $T \subset G$.
+\begin{enumerate}[(1)]
+\item\label{conju} Every $g \in G$ is conjugate to an element of $T$.
+\item Any other maximal torus $T' \subset G$ is $G$-conjugate to $T$.
+\item $C_G(T) = T$.
+\end{enumerate}
+\end{thm}
+
+\begin{ex}
+Find a counter-example to for non-compact groups. We already know \ref{conju}
+for $U(n)$. Why?
+\end{ex}
+
+A sketch of the proof:
+
+\begin{enumerate}[(1)]
+\item\label{surj} follows from surjectivity of $\op{exp}_G$.
+\item is immediate from \ref{surj}.
+\item uses surjectivity of $\op{exp}_G$.
+\end{enumerate}
+
+\subsection{Onto Representation Theory}
+Let $G$ be a compact connected group as before.
+
+\begin{prop}
+Any finite dimensional representation of $G$ is isomorphic to a direct sum of
+irreducible representations.
+\end{prop}
+
+\begin{proof}
+The proof is the same as in the finite case. Let $V \in \rep(G)$. Fix a 
+hermitian inner product $( \ , \ )$ on $V$. Produce a $G$-invariant inner product $\langle \ , \ \rangle$ by using the Haar measure that exists on $G$:
+\[ \langle v, w \rangle = \int_G (g \cdot v, g \cdot w) \ dg. \]
+If $W$ is a $G$-subrepresentation of $V$, then $V$ decomposes as
+$V = W \oplus W^\perp$ ($W^\perp$ is $G$-stable since $\langle \ , \ \rangle$ is
+$G$-invariant.
+\end{proof}
+
+The following is due to Schur.
+
+\begin{cor}
+If $V$ is irreducible, then $\into_{\cmplx[G]}(V) = \cmplx$.
+\end{cor}
+
+\begin{proof}
+Let $T \in \into_{cmplx[G]}(V)$. Since $V$ is finite-dimensional, $T$ has an
+eigenvalue $\lambda$. Then if $T$ is non-constant, $T - \lambda \cdot 1$ acts 
+on $V$ and satisfies $0 \neq \ker(T - \lambda \cdot 1) \subset V$. Since $V$ is
+irreducible, $\ker(T -\lambda \cdot 1) = V$, so $T = \lambda$.
+\end{proof}
+
+\begin{defn}
+Let $V \in \rep(G)$. The \textbf{character} $\chi_V$ of $V$ is a homomorphism
+$G \rightarrow \cmplx$ given by $g \rightarrow \tr(\restr{g}{V})$.
+\end{defn}
+
+Some basic facts about characters.
+
+\begin{enumerate}[1.]
+\item $\chi_V$ only depends on the isomorphism class of $V$.
+\item $\chi_V$ only depends on the conjugacy class of its argument.
+\item $\chi_{V \oplus W} = \chi_V + \chi_W$.
+\item $\chi_{V \otimes W} = \chi_V \chi_W$.
+\item $\chi_{V^*} = \conj{\chi_V}$, where $V = \operatorname{Hom}(V, \cmplx)$.
+\end{enumerate}
+
+The first four properties give us a homomorphism
+$K_0(\rep(G)) = R(G) \rightarrow C(G)$. Viewing $\chi_V$ in $L^2(G)$ with an
+inner product
+\[ \langle f_1, f_2 \rangle = \int_G \conj{f_1(g)} f_2(g) \ dg, \]
+we have the following basic calculation.
+
+\begin{prop}
+\begin{enumerate}[(1)]
+\item For $V, W \in \rep(G)$,
+$\langle \chi_V, \chi_W \rangle = \dim \operatorname{Hom}_G (V, W).$
+\item Characters of irreducible representations are orthnormal (Schur).
+\item $\chi_V = \chi_W$ if and only if $V \iso W$.
+\end{enumerate}
+\end{prop}

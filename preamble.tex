@@ -24,7 +24,6 @@
 % Figures
 \usepackage{graphicx}
 
-
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=0.5em\thm@postskip=\thm@preskip%
@@ -41,14 +40,17 @@
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
+\newtheorem{ex}[thm]{Exercise}
 \theoremstyle{remark}
 \newtheorem{exmpl}[thm]{Example}
 \newtheorem{rmk}[thm]{Remark}
 \crefformat{footnote}{#2\footnotemark[#1]#3}
 
 \input{commands/algebra}
+\input{commands/general}
 \input{commands/geometry}
 \input{commands/iso}
 \input{commands/ktheory}
