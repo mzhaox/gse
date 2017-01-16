@@ -68,10 +68,11 @@ The following are Lie groups.
   g \ \textrm{preserves a non-degenerate alternating form} \}$
 \item More generally, closed subgroups $G \xhookrightarrow{} \gl n \reals$.
 \item Unipotent matrices, invertible upper triangular matrices (Borel subgroup).
-\item $\sl 2 \reals$. Remark: $\pi_1(\sl 2 \reals) \iso \ints$. This can be
+\item $\sl 2 \reals$. $\pi_1(\sl 2 \reals) \iso \ints$. This can be
 established by looking at the Iwasawa decomposition of $\sl 2 \reals$.
-\item $\widetilde{\sl 2 \reals}$, the metaplectic cover of $\sl 2 \reals$ is a
-Lie group but can't be embedded into $\gl n \reals$.
+The covering space corresponding to $2 \ints \subset \pi_1(\sl 2 \reals)$ is
+denoted by $\widetilde{\sl 2 \reals}$, and called the metaplectic cover of
+$\sl 2 \reals$ is a Lie group but can't be embedded into $\gl n \reals$.
 \end{itemize}
 \end{exmpl}
 
@@ -179,10 +180,7 @@ A (compact) torus is a (compact) connected abelian Lie group.
 \end{defn}
 
 \begin{exmpl}
-$S^1$ is a torus, and almost all examples are isomorphic to $(S^1)^n$. If $T$ 
-is a  torus, its Lie algebra $\mathfrak{t}$ is isomorphic to $\reals^n$ and 
-surjects onto $T$ via $\op{exp}_T$. The kernel is a lattice $\ints^r$, so
-$T \iso (S^1)^{r} \times \reals^{n - r}$. For compact tori, $r = n$.
+$S^1$ is a torus, and all compact examples are isomorphic to $(S^1)^n$.
 \end{exmpl}
 
 \begin{defn}
@@ -249,12 +247,12 @@ Find a counter-example for non-compact groups. We already know \ref{conju}
 for $U(n)$. Why?
 
 An example of a non-compact Lie group without any tori is $\reals^n$. A maximal 
-torus of $U(n)$ is the subgroup of all diagonal matrices. The fact that any 
-unitary matrix can be diagonalized by another unitary matrix gives \ref{conju} 
-for $U(n)$.
+torus of $U(n)$ is the subgroup of all diagonal matrices. The spectral theorem
+tells us that any unitary matrix can be diagonalized by another unitary matrix 
+gives \ref{conju} for $U(n)$.
 \end{ex}
 
-\begin{proof} A sketch of the proof:
+\begin{proof} Idea of the proof:
 
 \begin{enumerate}[(1)]
 \item\label{surj} follows from surjectivity of $\op{exp}_G$.
