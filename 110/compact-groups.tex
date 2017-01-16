@@ -70,8 +70,8 @@ The following are Lie groups.
   g \ \textrm{preserves a non-degenerate alternating form} \}$
 \item More generally, closed subgroups $G \xhookrightarrow{} \gl n \reals$.
 \item Unipotent matriceslatex, invertible upper triangular matrices (Borel subgroup).
-\item $\sl 2 \reals$, which has $\pi_1(\sl 2 \reals) \iso \ints$.
-%TODO(hint): SO(2) \xhookrightarrow{} SL_2(R) 
+\item $\sl 2 \reals$. Remark: $\pi_1(\sl 2 \reals) \iso \ints$. This can be
+established by looking at the Iwasawa decomposition of $\sl 2 \reals$.
 \item $\widetilde{\sl 2 \reals}$, the metaplectic cover of $\sl 2 \reals$ is a
 Lie group but can't be embedded into $\gl n \reals$.
 \end{itemize}
@@ -84,10 +84,11 @@ The Lie algebra $\mathfrak{g}$ of $G$ is given by the tangent space at the
 identity. It is a priori a vector space, but the Lie bracket gives it an algebra
 structure, which we will describe briefly.
 
-There is a map $G \rightarrow \aut(G)$ since $G$ acts on $G$ by conjugation.
-This induces \[ \operatorname{Ad}: G \rightarrow \aut_\reals (\mathfrak{g}), \]
-given by \[ g \rightarrow \restr{dg}{1}.\] By differentiating at the identity,
-we obtain the map
+There is a map $\Psi: G \rightarrow \aut(G)$ since $G$ acts on $G$ by 
+conjugation. Since $\Psi(g)$ preserves the identity, we can look at the map
+\[ \operatorname{Ad}: G \rightarrow \aut_\reals(\mathfrak{g}), \]
+given by \[ g \rightarrow \restr{d\Psi(g)}{1}.\] By differentiating at the 
+identity, we obtain the map
 \[ \operatorname{ad}: \mathfrak{g} \rightarrow \into_\reals(\mathfrak{g}). \]
 Then we can define the Lie bracket as $[X, Y] := \operatorname{ad}(X)(Y)$.
 
@@ -99,23 +100,44 @@ For $G = \gl n \reals$, $\mathfrak{g} = M_n(\reals)$, and $[X, Y] = XY - YX$.
 
 Here we will explain the role of Lie algebras, by constructing a map
 $\op{exp} : \mathfrak{g} \rightarrow G$. For $G = \gl n k$,
-$\op{exp}(X) = \sum X^n / n!$.
+$\op{exp}(X) = \sum_n X^n / n!$.
 
-\subsubsection{$\op{exp}$ Facts}
+\subsubsection{$\op{exp}$ Facts} Before giving the construction, note several
+facts.
 
 \begin{enumerate}[1.]
-\item $\op{exp}$ is a local diffeomorphism near 0, by the implicit functions
+\item $\op{exp}$ is a local diffeomorphism near 0, by the implicit function
 theorem.
 \item $\op{exp}$ is not a homomorphism once $G$ is non-abelian.
 \end{enumerate}
 
 \subsubsection{$\op{exp}$ Construction}
 Take $X \in \mathfrak{g}$. Use left-multiplication to propagate $X$ to a
-left-invariant vector field $\xi_X$ on $G$. Construct an integral curve 
-$\varphi_X$ for this vector field (this corresponds to solving the differential 
-equation $\varphi(0) = 1, \varphi_X'(t) = \xi_X(\varphi_X(t))$. This gives a 
-function $\varphi_X : (-\varepsilon, \varepsilon) \rightarrow G$, which extends 
-to a homomorphism $\varphi_X : \reals \rightarrow G$.
+left-invariant vector field $\xi_X$ on $G$, i.e. $\xi_X(g) = (m_g)_*(X).$
+
+Construct an integral curve  $\varphi_X$ for this vector field by the following 
+procedure. Solve the  differential equation
+$\psi(0) = 1, \psi_X'(t)
+= \xi_X(\psi_X(t))$. This gives a 
+function $\psi_X : (-\varepsilon, \varepsilon) \rightarrow G$.
+
+Note that $\psi_X$ is a homomorphism. Fix $s$ and let $t$ vary. Let
+$\alpha(t) = \psi_X(s) \psi_X(t)$ and let $\beta(t) = \psi_X(s + t)$. Then
+$\alpha(0) = \beta(0)$, and $\alpha'(t) = \xi_X(\alpha(t))$ and
+$\beta'(t) = \xi_X(\beta(t))$ by left-invariance of $\xi_X$. Thus,
+$\alpha = \beta$.
+
+This can be extended to a homomorphism $\varphi_X : \reals \rightarrow G$,
+by setting $\varphi_X(t) = \phi_X(t/N)^N$, where $N$ is an integer such that
+$t/N < \varepsilon/2$. This does not depend on the choice of $N$; if $M$ was
+another such integer, we would have
+\[ \psi_X\left(\dfrac{t}{MN}\right)^N = \psi_X\left(\dfrac{t}{M}\right), 
+  \psi_X\left(\dfrac{t}{MN}\right)^M = \psi_X\left(\dfrac{t}{N}\right). \]
+Hence \[ \psi_X\left(\dfrac{t}{M}\right)^M = \phi_X(\dfrac{t}{MN})^{MN}
+ = \phi_X\left(\dfrac{t}{N}\right)^N. \]
+Using this definition and the fact that $\varphi_X$ is a homomorphism in
+$(-\varepsilon, \varepsilon)$, it can be shown $\varphi_X$ is a homomorphism
+$\reals \rightarrow G$.
 
 \begin{defn}
 $\op{exp}_G(X) := \varphi_X(1)$.
@@ -148,10 +170,10 @@ A (compact) torus is a (compact) connected abelian Lie group.
 \end{defn}
 
 \begin{exmpl}
-$S^1$ is a torus, and all examples are isomorphic to $(S^1)^n$. If $T$ is a 
-torus, its Lie algebra $\mathfrak{t}$ is isomorphic to $\reals^n$ and surjects
-onto $T$ via $\op{exp}_T$. The kernel is a full lattice $\ints^n$, so
-$T \iso (S^1)^n$.
+$S^1$ is a torus, and almost all examples are isomorphic to $(S^1)^n$. If $T$ 
+is a  torus, its Lie algebra $\mathfrak{t}$ is isomorphic to $\reals^n$ and 
+surjects onto $T$ via $\op{exp}_T$. The kernel is a lattice $\ints^r$, so
+$T \iso (S^1)^{r} \times \reals^{n - r}$. For compact tori, $r = n$.
 \end{exmpl}
 
 \begin{defn}
