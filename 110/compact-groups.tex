@@ -56,9 +56,7 @@ course, but the goal is to understand what $\gr G$ is.
 \begin{defn}
 A \textbf{Lie group} is a group object in the category of smooth manifolds, i.e.
 $m: G \times G \rightarrow G, \ \mathrm{inv}: G \rightarrow G,
-\ \mathrm{id}: {1} \rightarrow G$, satisfying the following diagrams.
-
-%TODO: commutative diagrams
+\ \mathrm{id}: {1} \rightarrow G$, satisfying the expected commutative diagrams.
 \end{defn}
 
 \begin{exmpl}
@@ -69,7 +67,7 @@ The following are Lie groups.
 \item $\sp {2n} \reals = \{ g \in \sl {2n} \reals \ | \
   g \ \textrm{preserves a non-degenerate alternating form} \}$
 \item More generally, closed subgroups $G \xhookrightarrow{} \gl n \reals$.
-\item Unipotent matriceslatex, invertible upper triangular matrices (Borel subgroup).
+\item Unipotent matrices, invertible upper triangular matrices (Borel subgroup).
 \item $\sl 2 \reals$. Remark: $\pi_1(\sl 2 \reals) \iso \ints$. This can be
 established by looking at the Iwasawa decomposition of $\sl 2 \reals$.
 \item $\widetilde{\sl 2 \reals}$, the metaplectic cover of $\sl 2 \reals$ is a
@@ -153,6 +151,17 @@ two points are connected by a geodesic.
 
 \begin{ex}
 Find a $G$ where $\op{exp}_G$ is not surjective.
+
+We do not need to look far for such an example. If $G = \gl 2 \reals$, and
+$\lambda_1, \lambda_2$ are two \emph{distinct} negative real numbers, consider
+\[B = \left(\begin{matrix}
+  \lambda_1 & 0 \\
+  0 & \lambda_2
+\end{matrix}\right). \]
+If there is an $A \in M_n(\reals)$ with $\op{exp}(A) = B$, and $A$ has
+eigenvalues $\alpha_1, \alpha_2$, then $e^{\alpha_i} = \lambda_i$. Since
+$\lambda_i$ are negative, $\alpha_1$ and $\alpha_2$ are complex conjugates. Thus
+$\lambda_1, \lambda_2$ have the same absolute value, a contradiction.
 \end{ex}
 
 \subsection{Representation of Compact Lie Groups}
@@ -189,6 +198,21 @@ If $T \iso \reals^n/\ints^n$, then all characters of $T$ have the form
 \[ (x_1, ..., x_n) \rightarrow \prod_{r = 1}^n e^{2 \pi i a_r x_r}, \]
 where all $a_r \in \ints$.
 \end{lem}
+\begin{proof}
+We just need to know what homomorphisms there are from $\reals/\ints$ to $S^1$ 
+(viewed as the unit circle in $\cmplx$). This is the same as knowing the 
+homomorphisms from $\reals/\ints \rightarrow \reals/\ints$, and any such
+$\varphi$ lifts to a homomorphism $\phi$ from $\reals$ to $\reals$, by using 
+twice the fact that a universal covering space covers any connected cover.
+
+This construction shows $\phi(1) \equiv 0 \pmod{1}$, so
+for some integer $n$, $\phi(1) = n$, $\phi(a) = na$,
+$b \phi(a/b) = \phi(a) = na$. By continuity,
+$\phi(x) = nx$ for any $x$. Then $\varphi(x) = \phi(x) = nx \pmod{1}$. As
+$x \rightarrow e^{2 \pi i x}$ is a homeomorphism $\reals/\ints \rightarrow S^1$,
+any homomorphism $\reals/\ints \rightarrow S^1$ is given by
+$x \rightarrow e^{2\pi i n x}$, for some $n$.
+\end{proof}
 \end{ex}
 
 \begin{lem}
@@ -198,7 +222,7 @@ $t \in T$ with $T = \overline{\langle t \rangle}.$
 
 \begin{proof}
 Assume $T \iso \reals^n/\ints^n$, and take $T \ni t = (t_1, ..., t_n)$. Let
-$H := \overline{\langle t \rangle}$.
+$H := \overline{\langle t \rangle}$. Then use the
 
 \begin{lem}
 $H = T$ if and only if $1, t_1, ..., t_n$ are $\rats$-linearly independent.
@@ -208,7 +232,7 @@ If $H \neq T$, then $T/H$, a compact torus, has a non-trivial character $\chi$,
 and \[ \chi(x_1, ..., x_n) = \prod_r e^{2 \pi i a_r x_r}, \]  for some integers
 $a_r$ not all zero. Then $\restr{\chi}{H} = 1$ if and only if $\chi(t) = 1$
 if and only if $\sum a_r t_r \in \ints$, which implies $1, t_1, ..., t_n$ are
-$\rats$-linearly independent.
+$\rats$-linearly dependent.
 \end{proof}
 
 \begin{thm}
@@ -221,17 +245,24 @@ Let $G$ be a compact connected Lie group. Fix a maximal torus $T \subset G$.
 \end{thm}
 
 \begin{ex}
-Find a counter-example to for non-compact groups. We already know \ref{conju}
+Find a counter-example for non-compact groups. We already know \ref{conju}
 for $U(n)$. Why?
+
+An example of a non-compact Lie group without any tori is $\reals^n$. A maximal 
+torus of $U(n)$ is the subgroup of all diagonal matrices. The fact that any 
+unitary matrix can be diagonalized by another unitary matrix gives \ref{conju} 
+for $U(n)$.
 \end{ex}
 
-A sketch of the proof:
+\begin{proof} A sketch of the proof:
 
 \begin{enumerate}[(1)]
 \item\label{surj} follows from surjectivity of $\op{exp}_G$.
 \item is immediate from \ref{surj}.
 \item uses surjectivity of $\op{exp}_G$.
 \end{enumerate}
+
+\end{proof}
 
 \subsection{Onto Representation Theory}
 Let $G$ be a compact connected group as before.
