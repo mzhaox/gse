@@ -315,9 +315,132 @@ we have the following basic calculation.
 
 \begin{prop}
 \begin{enumerate}[(1)]
-\item For $V, W \in \rep(G)$,
+\item\label{dim-formula} For $V, W \in \rep(G)$,
 $\langle \chi_V, \chi_W \rangle = \dim \operatorname{Hom}_G (V, W).$
-\item Characters of irreducible representations are orthnormal (Schur).
-\item $\chi_V = \chi_W$ if and only if $V \iso W$.
+\item\label{schur} Characters of irreducible representations are orthnormal 
+(Schur).
+\item\label{char-iso}$\chi_V = \chi_W$ if and only if $V \iso W$.
 \end{enumerate}
 \end{prop}
+
+\begin{proof}
+Prior to describing a sketch of the proof, we will need the following two
+lemmas.
+
+\begin{lem}\label{dims}
+For all $V \in \rep(G)$, $\dim V^G = \displaystyle\int_G \chi_V(g) \ dg$.
+\end{lem}
+
+\begin{lem}\label{b}
+For all $V$, there is a natural map
+\[ \bigoplus_{W \mathrm{irr.}} W \otimes \op{Hom}_G(W, V) \rightarrow V. \]
+\end{lem}
+
+(Recall that $\rep(G)$ is semi-simple.)
+
+Then we can calculate
+\begin{align*}
+\dim \op{Hom}_G(V, W) & = \dim (V^* \otimes W)^G \\
+& \stackrel{\ref{dims}}{=} \int_G \chi_{V^* \otimes W} (g) \ dg\\
+& = \int_G \conj{\chi_V(g)} \cdot \chi_W(g) \ dg \\
+& = \langle \chi_V, \chi_W \rangle,
+\end{align*}
+which proves \ref{dim-formula}. Part~\ref{schur} is proven by using
+\ref{dim-formula} and Schur's Lemma. For part~\ref{char-iso}, use lemma~\ref{b},
+with part~\ref{dim-formula}. If $\chi_{V_1} = \chi_{V_2}$, then for all
+irreducible $W$, $\dim \op{Hom}_G(W, V_i)$ is the same for $i = 1, 2$. Then 
+apply the lemma.
+\end{proof}
+
+\begin{prop}\label{motto-justification}
+Let $T < G$ be a maximal torus. Then $V, W \in \rep(G)$ are isomorphic if and
+only if $\restr{V}{T} \iso \restr{W}{T}$.
+\end{prop}
+
+\begin{proof}
+If $\restr{V}{T} \iso \restr{W}{T}$, then
+$\restr{\chi_V}{T} = \restr{\chi_W}{T}$. Since characters are invariant under
+conjugation, and the union of the conjugates of $T$ is $G$, $\chi_V = \chi_W$ on
+all of $G$, hence $V \iso W$.
+\end{proof}
+
+This justifies the motto we had earlier, that to study representations of $G$ 
+we can restrict our attention to a maximal torus.
+
+\subsection{Functorial Perspective}
+
+We can rephrase proposition~\ref{motto-justification}; recall that
+\[ R(G) = \ggroup(\rep(G)). \]
+
+\begin{prop}
+The restriction map $\op{res}: R(G) \rightarrow R(T)$ given by 
+\[ R(G) \ni V \rightarrow \restr{V}{T}
+    = \bigoplus_{\lambda \in \cgroup T} V_\lambda
+    \ (= \{ v \in V | t \cdot v = \lambda(t) v \forall t \in T \}) \]
+is injective.
+\end{prop}
+
+Thus to classify representations of $G$, we can just identify the image.
+Moreover, there is a symmetry present in the image of this map.
+
+\subsubsection{Weyl Group} That symmetry is related to the Weyl group.
+
+\begin{defn}
+Let $N_G(T)$ be the normalizer of $T$ in $G$. The \textbf{Weyl group}
+$W(G, T) := N_G(T)/T$. Often we will just write $W$, as this group doesn't
+depend on the choice of $T$, up to isomorphism.
+\end{defn}
+
+The action of $W$ on $T$ induces an action of $W$ on $\cgroup T$, given by
+\[ ^\omega \chi(t) = \chi(\omega^{-1} \cdot t). \] Hence $\op{res}(R(G))$ lands
+in $\ints[\cgroup T]^W \subset \ints[\cgroup T],$ because characters are
+conjugacy invariant.
+
+\begin{theorem}[of the Highest Weight]
+\[ \op{res}: R(G) \iso \ints[\cgroup T]^W \]
+\end{theorem}
+
+Later, we'll prove this in the setting of reductive algebraic groups.
+
+\begin{exmpl}
+Let $G = SU(2) = \{g \in \sl 2 \cmplx \ | \ \ ^t \conj{g} \cdot g = 1 \}$ and
+take \[ T := \left\{ \left(\begin{matrix}
+t & \\
+  & t^{-1} \\
+\end{matrix}\right) \ | \ t \in S^1 \right\}. \]
+
+To prove surjectivity of $\op{res}$ (onto $\ints[\cgroup T]^W$), we just need to
+write down enough representations of $G$. Let $V$ be the standard 
+two-dimensional representation. Then for all $k \ge 0$, $\op{Sym}^k(V)$ is an
+irreducible representation of $G$ of dimension $k + 1$.
+
+Let $e_1, e_2$ be a basis of $V$. Then a basis of $\op{Sym}^k(V)$ is given by
+$e_1^k, e_1^{k - 1} e_2, ..., e_2^k$, and the action on these basis elements
+is $t^k, t^{k - 1}t^{-1} = t^{k - 2}, ..., t^{-k}$. Let $\chi_n$ be the
+irreducible character
+\[ \left(\begin{matrix}
+t & \\
+  & t^{-1} \\
+\end{matrix}\right) \rightarrow t^n \]
+of $T$. Then 
+\[ \restr{\op{Sym}^k(V)}{T} = \bigoplus \chi_k \oplus \cdots \oplus \chi_{-k}.\]
+
+Note that if $\omega \in W \setminus \{ 1 \},$ then
+$^\omega \chi_k = \chi_{-k}$, because
+\[ \left(\begin{matrix}
+& 1 \\
+-1 & \\
+\end{matrix}\right) \left(\begin{matrix}
+t & \\
+& t^{-1} \\
+\end{matrix}\right) \left(\begin{matrix}
+& -1 \\
+1 & \\
+\end{matrix}\right) = \left(\begin{matrix}
+t^{-1} & \\
+& t \\
+\end{matrix}\right). \]
+
+These $\restr{\op{Sym}^k(V)}{T}$ for all $k \ge 0$ visibly span
+$\ints[\cgroup T]^W$.
+\end{exmpl}
