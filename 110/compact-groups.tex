@@ -132,7 +132,8 @@ $t/N < \varepsilon/2$. This does not depend on the choice of $N$; if $M$ was
 another such integer, we would have
 \[ \psi_X\left(\dfrac{t}{MN}\right)^N = \psi_X\left(\dfrac{t}{M}\right), 
   \psi_X\left(\dfrac{t}{MN}\right)^M = \psi_X\left(\dfrac{t}{N}\right). \]
-Hence \[ \psi_X\left(\dfrac{t}{M}\right)^M = \phi_X(\dfrac{t}{MN})^{MN}
+Hence \[ \psi_X\left(\dfrac{t}{M}\right)^M
+ = \phi_X\left(\dfrac{t}{MN}\right)^{MN}
  = \phi_X\left(\dfrac{t}{N}\right)^N. \]
 Using this definition and the fact that $\varphi_X$ is a homomorphism in
 $(-\varepsilon, \varepsilon)$, it can be shown $\varphi_X$ is a homomorphism
@@ -331,10 +332,43 @@ lemmas.
 For all $V \in \rep(G)$, $\dim V^G = \displaystyle\int_G \chi_V(g) \ dg$.
 \end{lem}
 
+\begin{proof}
+Let $\rho$ be the map $G \rightarrow \op{GL}_n(V)$ associated to $V$. Recall
+that there exists a unique linear transformation $A$ such that for any
+$f \in V^*$, \[ \int_G f(\rho(g) v) \ dg = f(Av), \] and that the action of
+$\int_G \rho(g) \ dg$ is defined to be the action of $A$. We will show that
+$\op{im} A = V^G$ and that $A$ is a projection operator. Since the trace of
+a projection operator and its rank coincide, this will prove the lemma.
+
+Due to left-invariance of Haar measure and this fact, we can prove
+\[\rho(h) \int_G \rho(g) \ dg = \int_G \rho(h) \rho(g) \ dg
+    = \int_G \rho(hg) \ dg = \int_G \rho(g) \ dg,\]
+when viewed as operators on $V$. For instance, the first equality follows from
+the fact that for any linear form $f$, $f \circ \rho(h)$ is also a linear form.
+This lets us prove that $\rho(h) Av = Av$ for $A = \int_G \rho(g) \ dg$. Hence
+$\op{im} A \subset V^G$. Now suppose we have $v$ such that $\rho(g) \cdot v = v$
+for every $g \in G$. Then for any $f \in V^*$, $f(\rho(g) \cdot v) = f(v)$.
+Taking the integral over $G$, $f(Av) = f(v)$. On $V^G$, then, $A$ acts as
+the identity. From this, surjectivity and idempotency follow.
+\end{proof}
+
 \begin{lem}\label{b}
-For all $V$, there is a natural map
-\[ \bigoplus_{W \mathrm{irr.}} W \otimes \op{Hom}_G(W, V) \rightarrow V. \]
+For all $V$, the natural map
+\[ \bigoplus_{W} W \otimes \op{Hom}_G(W, V) \rightarrow V, \]
+where the sum is taken over all irreducible representations $W$, given by
+\[ w \otimes \varphi \rightarrow \varphi(w), \]
+is an isomorphism of $G$-representations (the action of $G$ on
+$\op{Hom}_G(W, V)$ is trivial).
 \end{lem}
+
+\begin{proof}
+Since $W$ is irreducible, any element of $\op{Hom}_G(W, V)$ is an embedding.
+Thus, $\newline\dim \op{Hom}_G(W, V)$ counts the multiplicitly of $W$ in $V$. 
+Let $d := \dim \op{Hom}_G(W, V)$. It suffices to show
+\[ W \otimes \op{Hom}_G(W, V) \iso W^d. \] Taking a basis of
+$\op{Hom}_G(W, V)$ gives an identification with $\mathbb{C}^d$, and provides the
+isomorphism.
+\end{proof}
 
 (Recall that $\rep(G)$ is semi-simple.)
 
@@ -376,7 +410,7 @@ We can rephrase proposition~\ref{motto-justification}; recall that
 The restriction map $\op{res}: R(G) \rightarrow R(T)$ given by 
 \[ R(G) \ni V \rightarrow \restr{V}{T}
     = \bigoplus_{\lambda \in \cgroup T} V_\lambda
-    \ (= \{ v \in V | t \cdot v = \lambda(t) v \forall t \in T \}) \]
+    \ (= \{ v \in V | t \cdot v = \lambda(t) v, \ \forall t \in T \}) \]
 is injective.
 \end{prop}
 
@@ -390,6 +424,19 @@ Let $N_G(T)$ be the normalizer of $T$ in $G$. The \textbf{Weyl group}
 $W(G, T) := N_G(T)/T$. Often we will just write $W$, as this group doesn't
 depend on the choice of $T$, up to isomorphism.
 \end{defn}
+
+\begin{rmk}
+Note that $W$ is a finite group. Note that $N_G(T)$ is closed, hence a compact
+subgroup. Also, $\op{exp}_T$ induces an isomorphism of $T$ with $\op{Lie}(T)$
+modulo some lattice $\Lambda$. $W$ acts faithfully on this lattice, i.e. we 
+have an embedding \[ W \xhookrightarrow{} \op{Aut}_\ints(\Lambda), \]
+so $W$ is both compact and discrete, hence finite.
+\end{rmk}
+
+\begin{exmpl}
+If $G = \op{SU}(n)$, then $W \iso S_n$ (think permutation matrices).
+\end{exmpl}
+
 
 The action of $W$ on $T$ induces an action of $W$ on $\cgroup T$, given by
 \[ ^\omega \chi(t) = \chi(\omega^{-1} \cdot t). \] Hence $\op{res}(R(G))$ lands
@@ -423,7 +470,8 @@ t & \\
   & t^{-1} \\
 \end{matrix}\right) \rightarrow t^n \]
 of $T$. Then 
-\[ \restr{\op{Sym}^k(V)}{T} = \bigoplus \chi_k \oplus \cdots \oplus \chi_{-k}.\]
+\[ \restr{\op{Sym}^k(V)}{T}
+    = \chi_k \oplus \chi_{k - 2} \cdots \oplus \chi_{-k}.\]
 
 Note that if $\omega \in W \setminus \{ 1 \},$ then
 $^\omega \chi_k = \chi_{-k}$, because
