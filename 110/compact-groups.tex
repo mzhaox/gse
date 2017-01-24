@@ -363,14 +363,14 @@ $\op{Hom}_G(W, V)$ is trivial).
 
 \begin{proof}
 Since $W$ is irreducible, any element of $\op{Hom}_G(W, V)$ is an embedding.
-Thus, $\newline\dim \op{Hom}_G(W, V)$ counts the multiplicitly of $W$ in $V$. 
-Let $d := \dim \op{Hom}_G(W, V)$. It suffices to show
-\[ W \otimes \op{Hom}_G(W, V) \iso W^d. \] Taking a basis of
+Since $\rep(G)$ is semi-simple, the dimension of $\op{Hom}_G(W, V)$ counts
+the multiplicitly of $W$ in $V$. Then it suffices to show that for every
+irreducible $W$,
+\[ W \otimes \op{Hom}_G(W, V) \iso W^d, \]
+where $d := \dim \op{Hom}_G(W, V)$. Taking a basis of
 $\op{Hom}_G(W, V)$ gives an identification with $\mathbb{C}^d$, and provides the
 isomorphism.
 \end{proof}
-
-(Recall that $\rep(G)$ is semi-simple.)
 
 Then we can calculate
 \begin{align*}
@@ -401,7 +401,7 @@ all of $G$, hence $V \iso W$.
 This justifies the motto we had earlier, that to study representations of $G$ 
 we can restrict our attention to a maximal torus.
 
-\subsection{Functorial Perspective}
+\subsection{The Representation Ring}
 
 We can rephrase proposition~\ref{motto-justification}; recall that
 \[ R(G) = \ggroup(\rep(G)). \]

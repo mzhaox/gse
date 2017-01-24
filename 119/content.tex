@@ -1,0 +1,177 @@
+\section{Algebraic Groups}
+
+% This is an experiment in live TeXing notes for GSE.
+% TODO: insert notes from last time
+
+\begin{defn}
+A $k$-group scheme is a group ofject in the category of $k$-schemes. An
+\textbf{algebraic} $k$-group scheme is a $k$-group scheme of finite type over
+$k$. (Via Yoneda, we view $k$-groups as function of points from $k$-algebras
+to the category of groups).
+\end{defn}
+
+Groups of interest in this class: smooth affine algebraic groups (not assumed
+to be connected). 
+
+\begin{rmk}
+If $\op{char} k = 0$, an affine algebraic group is automatically smooth.
+\end{rmk}
+
+\begin{defn}
+A linearly reductive group $G$ over $k$ is a smooth affine algebraic group such
+that all representations of $G$ are semi-simple.
+\end{defn}
+
+\begin{rmk}
+Recall it's enough to check semi-simplicity on
+$k[G] \iso \displaystyle \bigoplus_{W \ \mathrm{irr}} W \otimes W^*$.
+\end{rmk}
+
+From now on, ``a group over $k$'' will mean ``smooth affine algebraic groups
+over $k$.''
+
+\begin{defn}
+A group $T$ over $k$ is a torus if $T_{\conj{k}} \iso \mathcal{G}_m^n$ for some
+$n \in \ints$. (Here $\mathcal{G}_m = \op{GL}_1$, i.e. a functor from
+$k$-algebras to groups $R \rightarrow R^\times$.) Say $T$ is split if
+$T \iso \mathcal{G}_m^n$.
+\end{defn}
+
+\begin{exmpl}
+For $k = \reals$, a split torus is $\reals^\times$ (i.e. $\mathbb{G}_m$). A
+non-split torus is $S^1, \cmplx^\times$. These are the three simple 
+$\reals$-tori. $\mathbb{S}^1
+    = \ker(\op{Norm}: \mathbb{S} \rightarrow \mathbb{G}_m)$ given by
+    $z \rightarrow z \cdot \conj{z}$.
+\begin{align*}
+\mathbb{S}: \reals-alg & \rightarrow \op{Gps} \\
+R & \rightarrow \mathbb{G}_m(\cmplx \otimes_\reals \reals)
+\end{align*}
+For instance, $\mathbb{S}_\cmplx \iso \mathbb{G}_m \times \mathbb{G}_m$
+($\op{Res}_{\cmplx/\reals} \mathbb{G}_m = \mathbb{S}$).
+\end{exmpl}
+
+\subsection{Representations of Tori}
+\begin{lem}
+\begin{enumerate}[(1)]
+\item Tori are linearly reductive.
+\item The simple representations of split torus $\mathbb{G}_m^n$ are given by
+characters
+\[(t_1, ..., t_n) \xrightarrow{\chi_(m_1, ..., m_n)} \prod_{i = 1}^n t_i ^ {m_i}, \]
+$m_i \in \ints$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Let's assume $T$ is split, i.e. $\iso \mathbb{G}_m^n$. Then
+$k[T] = k[X_1^{\pm 1}, ..., X_n^{\pm 1}]
+    = \bigoplus k \cdot X_1^{m_1} \cdots X_n^{m_n}.$
+When rt. regular representation, this is stable with action given by
+$\chi_{(m_1, ..., m_n)}$. Since all simples appear in $k[T]$, this list
+$(\chi_{(m_1, ..., m_n)})_{\underline{m} \in \ints^n)}$ must be exhaustive.
+\end{proof}
+
+\begin{ex}
+In characteristic 0, $\op{SL}_n$ is linearly reductive. In characteristic
+$p > 0$, $\op{SL}_n$ is not linearly reductive (hint: $\op{Sym}^p$).
+\end{ex}
+
+There's a different notion of a reductive group:
+
+\begin{defn}
+A group over $k$, $G$, is semi-simple if the \textbf{radical} $R(G)$ of $G$, 
+which is the maximal connected solvable smooth normal subgroup of $G$, is 
+trivial. It is \textbf{reductive} if the unipotent radical $R_n(G)$ of $G$, 
+which is the  maximal connected unipotent smooth normal subgroup of $G$, is 
+trivial.
+
+%TODO: correction: need to base change to the algebraic closure of k
+\end{defn}
+
+\begin{exmpl}
+A solvable group is the set of upper triangular (with diagonal) matrices in
+$\op{GL}_n$. A unipotent group is the subgroup of upper triangular with ones on
+the diagonal. $R(\op{GL}_n)$ is the center of multiples of the identity.
+$R_n(\op{GL}_n)$ is trivial. $R(\op{SL}_n)$ is trivial, since 
+the connected component of the identity is trivial if characteristic of $k$ does
+not divide $n$ and not smooth if characteristic divides $n$.
+the set of diagonal matrices with roots of unity on the diagonal.
+\end{exmpl}
+
+Over characteristic 0, then linearly reductive is the same as reductive. In
+studying representation theory of algebraic groups, we'll be interested in
+connected linearly reductive groups over algebraically closed, characteristic 0
+fields.
+
+\section{Structure theory of reductive groups over algebraically closed field}
+
+\begin{defn}
+The Lie algebra $\mathfrak{g}$ of $G$ is the tangent space at $1 \in G$, i.e.
+the kernel of $G(k[\epsilon]) \rightarrow G(k)$ where $\epsilon^2 = 0$.
+\end{defn}
+
+\begin{exmpl}
+Let $G = \op{GL}_n$. Then
+$\mathfrak{g} = \{ 1 + \epsilon A \ | \ A \in M_n(k) \}.$
+For $G = \op{SL}_n$, then
+$\mathfrak{g} = \{ 1 + \epsilon A \ | \ \det(1 + \epsilon A) = 1\}$. For 
+$G = \op{Sp}_{2n} = \{ g \in \op{GL}_{2n} | ^t g J g = J \}$, where
+\[ \left(\begin{matrix}
+& 1 \\
+-1 & \\
+\end{matrix}\right). \] Then
+$\mathfrak{sp}_{2n} = \{ 1 + \epsilon A \in \op{GL}_{2n}(k[\epsilon]) \ | \ 
+    ^t(1 + \epsilon A) J (1 + \epsilon A) = J \}$,
+or $^t A J + JA = 0$. As in compact theory, the usual tangent space definition.
+\end{exmpl}
+
+Next, decompose $\mathfrak{g}$ under $\restr{\op{Ad}}{T}$ where $T$ is a maximal
+torus. Take $G$ connected reductive over $k$. Let $T$ be a maximal (split, when
+$k = \conj{k}$) torus. We know $T$ is linearly reductive, so get a semi-simple
+decomposition of any representation $V$ of $T$. 
+\[V \iso \bigoplus_{\lambda \in \cgroup T} V_\lambda. \]
+For $V = \mathfrak{g}$, \[ \mathfrak{g}
+= \mathfrak{g}_0 \oplus \bigoplus_{\alpha \in \Phi(G, T) \mathfrak{g}_\alpha}.\]
+where $\Phi(G, T)$ are the roots of $T$, defined as
+$\{ \lambda \in \cgroup T, \lambda \neq 0 \ | \ \mathfrak{g}_\lambda \neq 0\}$.
+
+\begin{exmpl}
+$G = \op{GL}_3$.
+\end{exmpl}
+
+As in this exercise, it is always the case that
+\[ \mathfrak{g_0} = \{ X \in \mathfrak{g} | \op{Ad}(t)(X) = X \forall t \in T \ = \op{Lie}(T). \] This analogue of this last equality in the compact case is
+that $C_G(T) = T$.
+
+\subsection{Key Facts that Generalize from Compact Case} Again, let $G$
+be connected reductive over algebraically closed field. Fix a maximal torus $T$.
+
+\begin{enumerate}[(1)]
+\item $C_G(T) = T$. As before, define $W(G, T) = N(T)/C(T) = N(T)/T$. Again,
+this is finite.
+\item All maximal tori are conjugate (not true for $k \neq \conj{k}$. In 
+$\op{SL}_2(\reals)$, there is a split and non-split torus.).
+\item The union of the conjugates of maximal tori is Zariski-dense in $G$, but
+generally not equal.
+\item As before, we at least have a map $R(G) \xhookrightarrow{res} R(T)^W
+= \ints[\cgroup T]^W$.
+\end{enumerate}
+
+Recall our goal: show this is an isomorphism by writing down enough simples in
+$\op{Rep}(G)$. First, we need more structure theory (this will also give a
+definition of the Langlands dual group). 
+
+Immediate aim: classification of connected reductive groups over $k$, alg.
+closed.
+
+\begin{defn}
+A Borel subgroup in $G$ is a maximal connected solvable subgroup.
+\end{defn}
+
+Fact: all Borels in $G$ are conjugate (over an algebraically closed field).
+Borel fixed point theorem.
+
+A choice of Borel $B$ gives a decomposition of the root $\Phi = \Phi(G, T)$
+into positive and negative roots, $\Phi^+, \Phi^-$. 
+\[\Phi^+ = \{ \alpha \in \Phi \ | \ \mathfrak{g}_\alpha
+    \subset \op{Lie}(B) \subset \mathfrak{g} \}.\]
